@@ -22,6 +22,30 @@
    EXEC bronze.load_bronze;
    ============================================================ */
 
+/* ============================================================
+   Stored Procedure Name:
+   bronze.load_bronze
+
+   Source:
+   - CRM CSV files (cust_info, prd_info, sales_details)
+   - ERP CSV files (CUST_AZ12, LOC_A101, PX_CAT_G1V2)
+   - Files are loaded from local file system paths using BULK INSERT
+
+   Script Purpose:
+   - Loads raw CRM and ERP source data into Bronze layer tables.
+   - Ensures idempotent loads by truncating tables before inserting data.
+   - Uses BULK INSERT with TABLOCK to improve performance during data ingestion.
+   - Captures load duration and logs progress for monitoring and debugging.
+
+   Parameters / Return Values:
+   - This stored procedure does NOT accept any input parameters.
+   - It does NOT return any values.
+   - Execution details are logged using PRINT statements.
+
+   Usage Example:
+   EXEC bronze.load_bronze;
+   ============================================================ */
+
 EXEC bronze.load_bronze
 
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
@@ -141,4 +165,3 @@ BEGIN
 
 	END CATCH
 END
-
